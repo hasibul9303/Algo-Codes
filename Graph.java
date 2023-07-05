@@ -1,15 +1,16 @@
 import java.util.*;
+
 public class Graph {
 
     private LinkedList<Integer> adj[];
-    
+
     public Graph(int v) {
         adj = new LinkedList[v];
-        for(int i=0; i<v; i++) {
+        for (int i = 0; i < v; i++) {
             adj[i] = new LinkedList<Integer>();
         }
     }
-    
+
     public void addEdge(int src, int dest) {
         adj[src].add(dest);
         adj[dest].add(src);
@@ -24,14 +25,14 @@ public class Graph {
         q.add(src);
         vis[src] = true;
         parent[src] = -1;
-        
-        while(!q.isEmpty()) {
+
+        while (!q.isEmpty()) {
             int cur = q.poll();
             System.out.print(cur + "->");
-            if(cur == dest)
+            if (cur == dest)
                 break;
-            for(int neighbor: adj[cur]) {
-                if(!vis[neighbor]) {
+            for (int neighbor : adj[cur]) {
+                if (!vis[neighbor]) {
                     vis[neighbor] = true;
                     parent[neighbor] = cur;
                     q.add(neighbor);
@@ -42,7 +43,7 @@ public class Graph {
         int cur = dest;
         int distance = 0;
         System.out.println("\n Traversal path from source to destination");
-        while(parent[cur]!=-1) {
+        while (parent[cur] != -1) {
             System.out.print(cur + " -> ");
             cur = parent[cur];
             distance++;
@@ -59,8 +60,8 @@ public class Graph {
         vis[v] = true;
         System.out.print(v + " -> ");
 
-        for(int neighbor:adj[v]) {
-            if(!vis[neighbor]) {
+        for (int neighbor : adj[v]) {
+            if (!vis[neighbor]) {
                 dfs(neighbor, vis);
             }
         }
@@ -77,9 +78,9 @@ public class Graph {
         Graph graph = new Graph(v);
 
         System.out.println("Enter " + e + " edges: ");
-        for(int i=0; i<e; i++) {
+        for (int i = 0; i < e; i++) {
             int src = sc.nextInt();
-            int dest= sc.nextInt();
+            int dest = sc.nextInt();
 
             graph.addEdge(src, dest);
         }
@@ -93,8 +94,6 @@ public class Graph {
         // int distance = graph.bfs(src, dest);
         // System.out.println(" \n Minimum distance is " + distance);
 
-        graph.dfsUtil(v);
-
-
+        graph.dfsUtil(src);
     }
 }
