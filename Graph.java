@@ -47,7 +47,7 @@ public class Graph {
         while (!q.isEmpty()) {
             // Dequeue a vertex from the queue and print it
             int cur = q.poll();
-            System.out.print(cur + "->");
+            System.out.print(cur + " -> ");
 
             // Get all adjacent vertices of the dequeued vertex and process each of them
             for (int neighbor : adj[cur]) {
