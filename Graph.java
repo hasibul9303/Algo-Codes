@@ -9,7 +9,7 @@ public class Graph {
             adj[i] = new LinkedList<Integer>();
         }
     }
-
+    
     public void addEdge(int src, int dest) {
         adj[src].add(dest);
         adj[dest].add(src);
@@ -50,6 +50,22 @@ public class Graph {
         return distance;
     }
 
+    public void dfsUtil(int v) {
+        boolean vis[] = new boolean[adj.length];
+        dfs(v, vis);
+    }
+
+    public void dfs(int v, boolean vis[]) {
+        vis[v] = true;
+        System.out.print(v + " -> ");
+
+        for(int neighbor:adj[v]) {
+            if(!vis[neighbor]) {
+                dfs(neighbor, vis);
+            }
+        }
+    }
+
     public static void main(String args[]) {
         Scanner sc = new Scanner(System.in);
 
@@ -70,11 +86,15 @@ public class Graph {
 
         System.out.println("Enter source: ");
         int src = sc.nextInt();
-        System.out.println("Enter destination:");
-        int dest = sc.nextInt();
+        // System.out.println("Enter destination:");
+        // int dest = sc.nextInt();
 
-        System.out.println("Following is Breadth First Traversal " + "(starting from vertex " + src + ")");
-        int distance = graph.bfs(src, dest);
-        System.out.println(" \n Minimum distance is " + distance);
+        // System.out.println("Following is Breadth First Traversal " + "(starting from vertex " + src + ")");
+        // int distance = graph.bfs(src, dest);
+        // System.out.println(" \n Minimum distance is " + distance);
+
+        graph.dfsUtil(v);
+
+
     }
 }
